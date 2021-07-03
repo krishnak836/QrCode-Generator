@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">QrCode Generator</string>
+    <string name="textInstruction">Please Scan the generated QrCode Image</string>
+    <string name="username">Enter your Name</string>
+    <string name="company">Enter your Company Name</string>
+    <string name="product">Enter your Product</string>
+    <string name="price">Enter the Price</string>
+    <string name="btngenerate">Click to Generate QRCode</string>
+</resources>
