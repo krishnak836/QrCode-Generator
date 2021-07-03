@@ -2,6 +2,7 @@ package com.example.qrcodegenerator;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.Point;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -48,10 +50,15 @@ public class MainActivity extends AppCompatActivity {
         btnGenerate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                hideKeyboard(view);
                 Username = edtName.getText().toString().trim();
                 Company = edtCompany.getText().toString().trim();
                 Product = edtProduct.getText().toString().trim();
                 Price = edtPrice.getText().toString().trim();
+                edtCompany.setText("");
+                edtProduct.setText("");
+                edtName.setText("");
+                edtPrice.setText("");
                 if (!Company.equals("") && !Product.equals("") && !Username.equals("") && !Price.equals("")) {
                     String details = "Username =" + Username + "\n" + "Company =" + Company + "\n" + "Product =" + Product + "\n" + "Price =" + Price ;
                     WindowManager manager = (WindowManager) getSystemService(WINDOW_SERVICE);
@@ -79,5 +86,10 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+    }
+    private static void hideKeyboard(View view) {
+        InputMethodManager inputMethodManager = (InputMethodManager) view.getContext().getSystemService(Activity.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 }
